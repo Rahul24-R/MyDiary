@@ -27,5 +27,4 @@ export class UserRegisterComponent {
     
   }
   buttonText: string = "Create";
-
 }
