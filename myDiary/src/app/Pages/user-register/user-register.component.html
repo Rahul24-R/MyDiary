@@ -1,0 +1,27 @@
+<div class="registerpage">
+    <div class="logocontainer">
+        <img src="../../../assets/Logo.png" alt="logo">
+    </div>
+    <div class="logoheader">
+        <h1>Create your MyDiary Account!</h1>
+    </div>
+    <div class="registerformcontainer">
+       <form class="registerform" (submit)="createUser()">
+        <div class="input-div">
+            <input type="text" name="name"  [(ngModel)]="usermodel.Name" required class="custom-input" placeholder="Name" >
+        </div>
+        <div class="input-div">
+            <input type="text" name="username" [(ngModel)]="usermodel.UserName" required class="custom-input" placeholder="UserName">
+        </div>
+        <div class="input-div">
+            <input type="email" name="email" [(ngModel)]="usermodel.UserName" required class="custom-input" placeholder="Email">
+        </div>
+        <div class="input-div">
+            <input type="password" name="password" [(ngModel)]="usermodel.Password" required class="custom-input" placeholder="Password">
+        </div>
+        <div>
+            <button type="submit" class="submit-button">{{buttonText}}</button>
+        </div>
+       </form>
+    </div>
+</div>
