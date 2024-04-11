@@ -12,7 +12,7 @@ export class ToasterService {
   showSuccess(message: string): void {
     this.snackBar.open(message, 'Close', {
       duration: 4000, // Duration in milliseconds
-      panelClass: 'success-toast' // Optional CSS class for styling
+      panelClass: ['success-toast'] // Optional CSS class for styling
     });
   }
 
@@ -20,7 +20,7 @@ export class ToasterService {
   showError(message: string): void {
     this.snackBar.open(message, 'Close', {
       duration: 4000,
-      panelClass: 'error-toast'
+      panelClass: ['error-toast']
     });
   }
 }
