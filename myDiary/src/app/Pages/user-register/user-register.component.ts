@@ -22,6 +22,7 @@ export class UserRegisterComponent {
       (error) => {
         console.log("Error retiriving user data from server.")
         this.toaster.showError("Error retriving data from server.")
+        window.alert("Error retriving data from server.")
       }
     );
 
@@ -31,6 +32,7 @@ export class UserRegisterComponent {
     if (this.usersnames.includes(this.usermodel.UserName)) {
       console.log('Username already taken. Try again with different username')
       this.toaster.showError('Username already taken. Try again with different username.')
+      window.alert('Username already taken. Try again with different username.')
     }
     else {
       this.usermodel.Password = await this.hashPassword(this.usermodel.Password);
@@ -39,10 +41,12 @@ export class UserRegisterComponent {
         ()=>{
           this.toaster.showSuccess('User created successfuly.')
           console.log('User created successfuly.')
+          window.alert('User created successfuly.')
         },
         (error)=>{
           this.toaster.showError('User creation Failed.')
           console.log('User creation Failed.')
+          window.alert('User creation Failed.')
         }
       )
     }
