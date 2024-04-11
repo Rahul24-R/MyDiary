@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { user } from './user.model';
 import { UserdetailsServiceService } from 'src/app/Services/userdetails-service.service';
 import * as bcrypt from 'bcryptjs';
+import { ToasterService } from 'src/app/Services/toaster.service';
 
 @Component({
   selector: 'app-user-register',
@@ -12,7 +13,7 @@ export class UserRegisterComponent {
   usermodel: user = new user('', '', '', '', new Date(), new Date())
   usersnames: string[] = [];
 
-  constructor(private userservice: UserdetailsServiceService) { }
+  constructor(private userservice: UserdetailsServiceService, private toaster:ToasterService) { }
   ngOnInit(): void {
     this.userservice.getusers().subscribe(
       (data) => {
@@ -20,6 +21,7 @@ export class UserRegisterComponent {
       },
       (error) => {
         console.log("Error retiriving user data from server.")
+        this.toaster.showError("Error retriving data from server.")
       }
     );
 
@@ -28,16 +30,19 @@ export class UserRegisterComponent {
     console.log(this.usersnames)
     if (this.usersnames.includes(this.usermodel.UserName)) {
       console.log('Username already taken. Try again with different username')
+      this.toaster.showError('Username already taken. Try again with different username.')
     }
     else {
       this.usermodel.Password = await this.hashPassword(this.usermodel.Password);
       console.log(this.usermodel)
       this.userservice.postusers(this.usermodel).subscribe(
         ()=>{
+          this.toaster.showSuccess('User created successfuly.')
           console.log('User created successfuly.')
         },
         (error)=>{
-          console.log('UserCreation Failed.')
+          this.toaster.showError('User creation Failed.')
+          console.log('User creation Failed.')
         }
       )
     }
