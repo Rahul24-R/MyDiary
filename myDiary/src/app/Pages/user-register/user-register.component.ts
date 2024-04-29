@@ -3,6 +3,7 @@ import { user } from './user.model';
 import { UserdetailsServiceService } from 'src/app/Services/userdetails-service.service';
 import * as bcrypt from 'bcryptjs';
 import { ToasterService } from 'src/app/Services/toaster.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-register',
@@ -13,7 +14,7 @@ export class UserRegisterComponent {
   usermodel: user = new user('', '', '', '', new Date(), new Date())
   usersnames: string[] = [];
 
-  constructor(private userservice: UserdetailsServiceService, private toaster:ToasterService) { }
+  constructor(private userservice: UserdetailsServiceService, private toaster:ToasterService,private router:Router) { }
   ngOnInit(): void {
     this.userservice.getusers().subscribe(
       (data) => {
@@ -39,6 +40,7 @@ export class UserRegisterComponent {
         ()=>{
           this.toaster.showSuccess('User created successfuly.')
           console.log('User created successfuly.')
+          this.router.navigate(['/login'])
         },
         (error)=>{
           this.toaster.showError('User creation Failed.')

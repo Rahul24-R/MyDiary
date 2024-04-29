@@ -5,6 +5,13 @@ body{
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.usernote{
+  justify-content: center;
+  margin: 20px;
+  text-align: center;
+  padding: 60px;
+}
+
 .success-toast {
     background-color: #4CAF50; /* Green */
     color: white;
