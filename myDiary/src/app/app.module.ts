@@ -8,12 +8,14 @@ import { UserRegisterComponent } from './Pages/user-register/user-register.compo
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { DiarymainComponent } from './Pages/diarymain/diarymain.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    UserRegisterComponent
+    UserRegisterComponent,
+    DiarymainComponent
   ],
   imports: [
     BrowserModule,

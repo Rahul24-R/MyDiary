@@ -23,6 +23,7 @@ export class LoginPageComponent {
         if(await bcrypt.compare(this.usermodel.password,data.password)){
           console.log("Password correct.");
           this.toaster.showSuccess("Login Successful");
+          this.router.navigate(['/diarymain']);
         }
         else{
           console.log("Wrong password.");
