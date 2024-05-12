@@ -4,6 +4,7 @@ import { UserdetailsServiceService } from 'src/app/Services/userdetails-service.
 import * as bcrypt from 'bcryptjs';
 import { ToasterService } from 'src/app/Services/toaster.service';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-user-register',
@@ -13,14 +14,19 @@ import { Router } from '@angular/router';
 export class UserRegisterComponent {
   usermodel: user = new user('', '', '', '', new Date(), new Date())
   usersnames: string[] = [];
+SpinnerMessage: any;
 
-  constructor(private userservice: UserdetailsServiceService, private toaster:ToasterService,private router:Router) { }
+  constructor(private userservice: UserdetailsServiceService, private toaster:ToasterService,private router:Router,private spinner:NgxSpinnerService) { }
   ngOnInit(): void {
+    this.SpinnerMessage="Fetching Data"
+    this.spinner.show()
     this.userservice.getusers().subscribe(
       (data) => {
+        this.spinner.hide();
         this.usersnames = data;
       },
       (error) => {
+        this.spinner.hide();
         console.log("Error retiriving user data from server.")
         this.toaster.showError("Error retriving data from server.")
       }
@@ -28,6 +34,7 @@ export class UserRegisterComponent {
 
   }
   async createUser() {
+    this.SpinnerMessage ="Creating Account"
     console.log(this.usersnames)
     if (this.usersnames.includes(this.usermodel.UserName)) {
       console.log('Username already taken. Try again with different username')
@@ -36,15 +43,18 @@ export class UserRegisterComponent {
     else {
       this.usermodel.Password = await this.hashPassword(this.usermodel.Password);
       console.log(this.usermodel)
+      this.spinner.show();
       this.userservice.postusers(this.usermodel).subscribe(
         ()=>{
           this.toaster.showSuccess('User created successfuly.')
           console.log('User created successfuly.')
           this.router.navigate(['/login'])
+          this.spinner.hide();
         },
         (error)=>{
           this.toaster.showError('User creation Failed.')
           console.log('User creation Failed.')
+          this.spinner.hide();
         }
       )
     }

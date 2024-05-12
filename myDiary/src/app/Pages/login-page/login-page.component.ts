@@ -4,6 +4,7 @@ import { user } from './user.model';
 import * as bcrypt from 'bcryptjs';
 import { UserdetailsServiceService } from 'src/app/Services/userdetails-service.service';
 import { ToasterService } from 'src/app/Services/toaster.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -13,21 +14,24 @@ import { ToasterService } from 'src/app/Services/toaster.service';
 })
 export class LoginPageComponent {
    usermodel:user = new user("","");
-  constructor(private router:Router,private userdetail:UserdetailsServiceService,private toaster:ToasterService) {}
+  constructor(private router:Router,private userdetail:UserdetailsServiceService,private toaster:ToasterService,private spinner:NgxSpinnerService) {}
 
   async login(){
     console.log("User log-in.")
+    this.spinner.show();
     this.userdetail.validateUser(this.usermodel.username).subscribe(
       async (data)=>{
-        console.log("User logged-in attempy - "+ data.username);
+        console.log("User logged-in attempt");
         if(await bcrypt.compare(this.usermodel.password,data.password)){
           console.log("Password correct.");
           this.toaster.showSuccess("Login Successful");
           this.router.navigate(['/diarymain']);
+          this.spinner.hide();
         }
         else{
           console.log("Wrong password.");
           this.toaster.showError("Login Failed.Wrong Password");
+          this.spinner.hide();
         }
       },
       (error)=>{
@@ -35,6 +39,7 @@ export class LoginPageComponent {
         if(error.status === 404){
           console.log("User not Found");
           this.toaster.showError("User not found");
+          this.spinner.hide();
         }
       }
     )

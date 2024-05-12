@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DiarymainComponent } from './Pages/diarymain/diarymain.component';
 import { HttpInterceptorInterceptor } from './Services/http-interceptor.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpInterceptorInterceptor } from './Services/http-interceptor.intercep
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgxSpinnerModule,
   ],
   providers: [
     {
