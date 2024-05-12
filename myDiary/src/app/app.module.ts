@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './Pages/login-page/login-page.component';
 import { UserRegisterComponent } from './Pages/user-register/user-register.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DiarymainComponent } from './Pages/diarymain/diarymain.component';
+import { HttpInterceptorInterceptor } from './Services/http-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,13 @@ import { DiarymainComponent } from './Pages/diarymain/diarymain.component';
     BrowserAnimationsModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
