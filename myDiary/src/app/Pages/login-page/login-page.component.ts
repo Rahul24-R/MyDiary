@@ -25,6 +25,7 @@ export class LoginPageComponent {
         if(await bcrypt.compare(this.usermodel.password,data.password)){
           console.log("Password correct.");
           this.toaster.showSuccess("Login Successful");
+          localStorage.setItem('DiaryUser',JSON.stringify({ user: this.usermodel.username, expiry: Date.now() + 3600000  }))
           this.router.navigate(['/diarymain']);
           this.spinner.hide();
         }

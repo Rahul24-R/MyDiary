@@ -11,6 +11,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DiarymainComponent } from './Pages/diarymain/diarymain.component';
 import { HttpInterceptorInterceptor } from './Services/http-interceptor.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { AuthGuard } from './Services/AuthGuard-canActivate';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorInterceptor,
       multi: true
-    }
+    },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
