@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
               return false;
             } else {
               // Data is still valid, use it
-              console.log('User data:', userData.data);
+              console.log('User data:', userData.user,userData.expiry);
               return true;
             }
         }
