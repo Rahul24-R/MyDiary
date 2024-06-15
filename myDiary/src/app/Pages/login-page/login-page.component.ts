@@ -50,6 +50,10 @@ export class LoginPageComponent {
     this.router.navigate(['/register'])
   }
 
+  passworedreset() {
+    this.router.navigate(['/passwordreset'])
+  }
+
   hashPassword(password: string) {
     const saltRounds = 10;
     return bcrypt.hash(password, saltRounds);

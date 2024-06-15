@@ -12,13 +12,15 @@ import { DiarymainComponent } from './Pages/diarymain/diarymain.component';
 import { HttpInterceptorInterceptor } from './Services/http-interceptor.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AuthGuard } from './Services/AuthGuard-canActivate';
+import { ForgotPasswordComponent } from './Pages/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     UserRegisterComponent,
-    DiarymainComponent
+    DiarymainComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
