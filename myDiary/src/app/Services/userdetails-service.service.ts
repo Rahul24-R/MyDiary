@@ -8,6 +8,7 @@ import { user } from '../Pages/user-register/user.model';
 export class UserdetailsServiceService {
  UserAPI:string ="https://rahulportfolio.somee.com/api/register";
  loginAPI:string ="https://rahulportfolio.somee.com/api/login/ValidateUser";
+ resetpassword:string ="";
  
   constructor(private http: HttpClient) { }
 
