@@ -8,7 +8,7 @@ import { user } from '../Pages/user-register/user.model';
 export class UserdetailsServiceService {
  UserAPI:string ="https://rahulportfolio.somee.com/api/register";
  loginAPI:string ="https://rahulportfolio.somee.com/api/login/ValidateUser";
- resetpassword:string ="";
+ resetpasswordAPI:string ="https://rahulportfolio.somee.com/api/reset/ResetPassword";
  
   constructor(private http: HttpClient) { }
 
@@ -23,5 +23,9 @@ export class UserdetailsServiceService {
   validateUser(username:string){
     const body ={username : username}
     return this.http.get<any>(`https://rahulportfolio.somee.com/api/login/ValidateUser?username=${username}`);
+  }
+
+  resetpassword(username:string,email:string){
+    return this.http.get<any>(this.resetpasswordAPI+`?username=${username}&email=${email}`);
   }
 }
