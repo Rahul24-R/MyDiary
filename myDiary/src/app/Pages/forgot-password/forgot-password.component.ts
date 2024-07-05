@@ -28,6 +28,6 @@ export class ForgotPasswordComponent {
       this.spinner.hide();
       this.toasterservice.showError("Password reset failed.");
     }
-    )
+    ).add[Symbol]..
     }
 }
