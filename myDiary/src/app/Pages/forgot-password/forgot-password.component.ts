@@ -29,5 +29,5 @@ export class ForgotPasswordComponent {
       this.toasterservice.showError("Password reset failed.");
     }
     )
-    }
+    }..
 }
